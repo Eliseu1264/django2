@@ -1,0 +1,93 @@
+----------------------------------------------------------------------------
+=> Se ainda não existir, criar na raiz do projeto, o arquivo ".gitignore"
+   e colocar ou acrescentar nele o seguinte:
+
+__pycache__
+*.*~
+*.pyc
+.idea
+
+----------------------------------------------------------------------------
+=> Instalar whitenoise e gunicorn:
+   pip install whitenoise gunicorn
+
+*  whitenoise -> possibilita que o django use arquivos estáticos 
+   após o deploy.
+   gunicorn -> servidor da aplicação publicada no heroku
+----------------------------------------------------------------------------
+=> adicionar a linha 'whitenoise.middleware.WhiteNoiseMiddleware'
+   na seção MIDDLEWARE do arquivo settings.py:
+* deve ficar na posição conforme as linhas abaixo.
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+----------------------------------------------------------------------------
+=> Configurar o local dos arquivos estaticos no arquivo settings.py:
+   STATIC_URL = '/static/'
+   STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+----------------------------------------------------------------------------
+=> No arquivo settings.py, mudar:
+   DEBUG = false
+----------------------------------------------------------------------------
+=> se não tiver, criar uma conta no heroku.
+----------------------------------------------------------------------------
+
+=> acessar o site https://devcenter.heroku.com/articles/heroku-cli e baixar
+    e instalar o CLI do heroku, para linhas de comando.
+----------------------------------------------------------------------------
+=> Criar na raiz do projeto o arquivo "runtime.txt" e colocar seu conteúdo:
+   "Python-3.10.6"
+  * essa é a versão do python instalada para o projeto.
+    (adicionar este arquivo ao git)
+----------------------------------------------------------------------------
+=> atualizar o arquivo requerements.txt
+   pip freeze requirements.txt
+----------------------------------------------------------------------------
+=> Criar na raiz do projeto o arquivo do heroku "Procfile" com seu conteúdo:
+   "web: gunicorn django1.wsgi --log-file -"
+ *observe que "django1" é o nome do projeto.
+----------------------------------------------------------------------------
+=> informar no terminal: 
+   reroku login
+   * deve abrir um navegador. Faz-se o login e volta ao prompt ( CLI )
+----------------------------------------------------------------------------
+=> Criar a aplicação heroku:
+   heroku create django1-assist --buildpack heroku/python
+----------------------------------------------------------------------------
+=> Últimos passos da publicação. Enviar o codigo para o site e instalar o que
+   precisa para o projeto funcar, como python e etc:
+   git push heroku master
+----------------------------------------------------------------------------
+=> Após se ter o endereço do site, abre-se o arquivo "settings.py" e
+   coloca-se entre os parêntese. por Exemplo o site "https://django1-assist.heroku.com"
+   ALLOWED HOSTS = ['django1-assist.heroku.com']
+----------------------------------------------------------------------------
+=> Para atualizar/alterar o projeto no git e heroku:
+   git add .
+   git commit -m "mensagem"
+
+   git push heroku master
+----------------------------------------------------------------------------
+>> Criar a aplicação no heroku:
+   heroku create django1-assist --buildpack heroku/python
+----------------------------------------------------------------------------
+>> Publicar/enviar a aplicação no heroku:
+   git push heroku master
+----------------------------------------------------------------------------
+=> Executar a migração (para PostegreSQL, por exemplo.)
+   heroku run py manage.py migrate
+----------------------------------------------------------------------------
+=> Para ver algum erro, quando houver, no deploy:
+   heroku logs --tail
+
+--------------------------------------------------
+criou:
+    https://django1-assist.herokuapp.com/

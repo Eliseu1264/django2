@@ -1,0 +1,5 @@
+>> Criar a aplicação no heroku:
+      heroku create django2-assist --buildpack heroku/python
+
+>> Publicar a aplicação no heroku:
+      git push heroku master
