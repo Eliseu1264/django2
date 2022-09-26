@@ -15,13 +15,13 @@ class Base(models.Model):
 
 class Produto(Base):
      nome = models.CharField('Nome', max_length=100)
-     preco = models.DecimalField('preço', max_digit=8, decimal_places=2)
+     preco = models.DecimalField('Preço', max_digits=8, decimal_places=2)
      estoque = models.IntegerField('Estoque')
-     imagem = StdImageField('Imagem', upload_to='produto', variations={'thumb': (124, 124)})
+     imagem = StdImageField('Imagem', upload_to='produtos', variations={'thumb': (124, 124)}, blank=True, null=True) 
      slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
-
+     
      def __str__(self):
-         return sefl.nome
+         return self.nome
 
 def produto_pre_save(signal, instance, sender, **kwargs):
      instance.slug = slugify(instance.nome)

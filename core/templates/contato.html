@@ -1,4 +1,4 @@
-{% bootstrap4 %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +15,11 @@
        <form action="{% url 'contato' %}" method="post" class="form" autocomplete="off">       
             {% csrf_token %}
             {% bootstrap_form form %}
-            {% buttons%}
+            {% buttons %}
                  <button type="submit" class="btn-primary">Enviar Mensagem</button>
-            {% endbuttons%}
+            {% endbuttons %}
        </form>    
     <div>
-{% bootstrap_javascript_jquery='full' %}    
+{% bootstrap_javascript jquery='full' %}    
 </body>
 </html>
