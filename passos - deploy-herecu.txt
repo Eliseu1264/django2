@@ -85,6 +85,15 @@ MIDDLEWARE = [
 => Executar a migração (para PostegreSQL, por exemplo.)
    heroku run python manage.py migrate
 ----------------------------------------------------------------------------
+>> Resetar o banco de dados no heroku:
+   heroku pg:reset DATABASE_URL
+
+>> Recriar as tabelas:
+   heroku run python manage.py migrate
+
+>> Recriar super usuário:
+   heroku run python manage.py createsuperuser
+----------------------------------------------------------------------------
 => Para ver algum erro, quando houver, no deploy:
    heroku logs --tail
 
