@@ -15,8 +15,21 @@ from pathlib import Path
 import dj_database_url
 
 # Usando a configuração para PostgresSQL com Heroku
+"""
 DATABASES = {
     'default': dj_database_url.config()
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'DatabaseName',
+        'USER': 'DatabaseUserName',
+        'PASSWORD': 'DatabaseUserpassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

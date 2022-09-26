@@ -83,7 +83,7 @@ MIDDLEWARE = [
    git push heroku master
 ----------------------------------------------------------------------------
 => Executar a migração (para PostegreSQL, por exemplo.)
-   heroku run py manage.py migrate
+   heroku run python manage.py migrate
 ----------------------------------------------------------------------------
 => Para ver algum erro, quando houver, no deploy:
    heroku logs --tail
