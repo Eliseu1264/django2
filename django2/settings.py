@@ -11,25 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-from pathlib import Path
 import dj_database_url
 
 # Usando a configuração para PostgresSQL com Heroku
-"""
 DATABASES = {
     'default': dj_database_url.config()
-}
-"""
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DatabaseName',
-        'USER': 'DatabaseUserName',
-        'PASSWORD': 'DatabaseUserpassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,8 +31,9 @@ SECRET_KEY = 'django-insecure-5%-op^l7)&csjy9=e787$b5u)i-veyvrmg0&w$o37756*t-0l4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['*']
 
+ALLOWED_HOSTS = ['django2-assist.herokuapp.com']
 
 # Application definition
 
